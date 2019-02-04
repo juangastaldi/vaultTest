@@ -10,7 +10,7 @@ import org.springframework.validation.Validator;
 import com.jgastaldi.vaultTest.model.Department;
 import com.jgastaldi.vaultTest.service.EmployeeService;
 
-@Component("beforeCreateDepartmentValidator")
+@Component
 public class DepartmentValidator implements Validator {
 
 	@Autowired
@@ -27,11 +27,11 @@ public class DepartmentValidator implements Validator {
 		Double mean = employeeService.findMeanSalaryByLocation(department.getLocation());
 		String reject = "No se puede ingresar un nuevo Departamento ya que el promedio ";
 		if (LocalDate.now().getDayOfMonth() <= 14) {
-			if (mean > 1000.0) {
+			if (mean != null && mean > 1000.0) {
 				error.reject(reject + "es mayor a $1000 y se encuentra dentro de las primeras dos semanas");
 			}
 		} else {
-			if (mean > 1500.0) {
+			if (mean != null && mean > 1500.0) {
 				error.reject(reject + "es mayor a $1500 y se encuentra despues de las dos primeras semanas");
 			}
 		}

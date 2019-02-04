@@ -15,9 +15,9 @@ import com.jgastaldi.vaultTest.model.Location;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-	public List<Employee> findByJobAndManagerAndLastName(Job job, Employee manager, String lastName, Pageable pageable);
+	public List<Employee> findByJobOrManagerOrLastName(Job job, Employee manager, String lastName,
+			Pageable pageable);
 
-	@Query("SELECT SUM(employee.salary) / COUNT(*) FROM Employee employee "
-			+ "	JOIN employee.department department WHERE department.location = :location ")
+	@Query("SELECT SUM(employee.salary) / COUNT(*) FROM Employee employee JOIN employee.department department WHERE department.location = :location ")
 	public Double findMeanSalaryByLocation(@Param("location") Location location);
 }

@@ -35,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional(readOnly = true)
 	public List<Employee> findAllEmployeeByJobAndManagerAndLastName(Job job, Employee manager, String lastName,
 			Pageable pageable) {
-		List<Employee> result = employeeRepository.findByJobAndManagerAndLastName(job, manager, lastName, pageable);
+		List<Employee> result = employeeRepository.findByJobOrManagerOrLastName(job, manager, lastName, pageable);
 		result.sort((emp1, emp2) -> emp1.getHireDate().compareTo(emp2.getHireDate()));
 		return result;
 	}

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "JOB")
@@ -18,13 +19,18 @@ public class Job implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	private String jobTitle;
 
-	private Double minSalary;
+	private Long minSalary;
 
-	private Double maxSalary;
+	private Long maxSalary;
 
 	public Job() {
+	}
+
+	public Job(Long id) {
+		this.id = id;
 	}
 
 	public Long getId() {
@@ -43,19 +49,19 @@ public class Job implements Serializable {
 		this.jobTitle = jobTitle;
 	}
 
-	public Double getMinSalary() {
+	public Long getMinSalary() {
 		return minSalary;
 	}
 
-	public void setMinSalary(Double minSalary) {
+	public void setMinSalary(Long minSalary) {
 		this.minSalary = minSalary;
 	}
 
-	public Double getMaxSalary() {
+	public Long getMaxSalary() {
 		return maxSalary;
 	}
 
-	public void setMaxSalary(Double maxSalary) {
+	public void setMaxSalary(Long maxSalary) {
 		this.maxSalary = maxSalary;
 	}
 }

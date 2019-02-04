@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "DEPARTMENT")
@@ -18,13 +21,22 @@ public class Department implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@ManyToOne(optional = false)
+	@JoinColumn
 	private Location location;
 
+	@ManyToOne(optional = true)
+	@JoinColumn
 	private Employee manager;
 
+	@NotNull
 	private String departmentName;
 
 	public Department() {
+	}
+
+	public Department(Long id) {
+		this.id = id;
 	}
 
 	public Long getId() {

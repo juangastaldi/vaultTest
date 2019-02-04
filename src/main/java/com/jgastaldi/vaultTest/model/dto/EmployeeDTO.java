@@ -1,63 +1,36 @@
-package com.jgastaldi.vaultTest.model;
+package com.jgastaldi.vaultTest.model.dto;
 
-import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import com.jgastaldi.vaultTest.model.Department;
+import com.jgastaldi.vaultTest.model.Employee;
+import com.jgastaldi.vaultTest.model.Job;
 
-@Entity
-@Table(name = "EMPLOYEE")
-public class Employee implements Serializable {
+public class EmployeeDTO {
 
-	private static final long serialVersionUID = 9105544750146323181L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(optional = true)
-	@JoinColumn
 	private Employee manager;
 
-	@ManyToOne(optional = false)
-	@JoinColumn
 	private Job job;
 
-	@ManyToOne(optional = false)
-	@JoinColumn
 	private Department department;
 
 	private String firstName;
 
-	@NotNull
 	private String lastName;
 
-	@NotNull
-	@Email
 	private String email;
 
-	private String phoneNumber;
+	private Long phoneNumber;
 
-	@NotNull
-	private LocalDate hireDate;
+	private Date hireDate;
 
 	private Double salary;
 
 	private Double commissionPct;
 
-	public Employee() {
-	}
-
-	public Employee(Long id) {
-		this.id = id;
+	public EmployeeDTO() {
 	}
 
 	public Long getId() {
@@ -68,24 +41,24 @@ public class Employee implements Serializable {
 		this.id = id;
 	}
 
-	public Employee getManager() {
-		return manager;
+	public Long getManager() {
+		return manager != null ? manager.getId() : null;
 	}
 
 	public void setManager(Employee manager) {
 		this.manager = manager;
 	}
 
-	public Job getJob() {
-		return job;
+	public Long getJob() {
+		return job != null ? job.getId() : null;
 	}
 
 	public void setJob(Job job) {
 		this.job = job;
 	}
 
-	public Department getDepartment() {
-		return department;
+	public Long getDepartment() {
+		return department != null ? department.getId() : null;
 	}
 
 	public void setDepartment(Department department) {
@@ -116,19 +89,19 @@ public class Employee implements Serializable {
 		this.email = email;
 	}
 
-	public String getPhoneNumber() {
+	public Long getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(Long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public LocalDate getHireDate() {
+	public Date getHireDate() {
 		return hireDate;
 	}
 
-	public void setHireDate(LocalDate hireDate) {
+	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
 	}
 

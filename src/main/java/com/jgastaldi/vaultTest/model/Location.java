@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "LOCATION")
@@ -22,10 +25,13 @@ public class Location implements Serializable {
 
 	private String postalCode;
 
+	@NotNull
 	private String city;
 
 	private String stateProvince;
 
+	@ManyToOne(optional = false)
+	@JoinColumn
 	private Country country;
 
 	public Location() {
